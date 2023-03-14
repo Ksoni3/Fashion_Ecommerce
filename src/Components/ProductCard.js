@@ -10,15 +10,15 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <div className="bg-gradient-to-br from-orange-600 to-pink-500 min-h-screen flex justify-center items-center">
-        <div className="max-w-6xl w-full h-full bg-white p-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-1 shadow-2xl rounded-3xl p-5">
+        <div className="max-w-6xl w-full h-[60%] bg-white p-10 grid grid-cols-1 lg:grid-cols-3  md:gap-10">
+          <div className=" h-[50%] md:h-auto lg:col-span-1  shadow-2xl rounded-3xl p-5 flex justify-center">
             <img
               src={image}
               alt="ada"
               className="h-full rounded-md object-cover object-center ease-in-out duration-500 hover:scale-105"
             />
           </div>
-          <div className="lg:col-span-2 shadow-2xl rounded-3xl flex items-center">
+          <div className="-mt-32 md:mt-0 lg:col-span-2 shadow-2xl rounded-3xl flex items-center">
             <div className="w-full m-auto text-center pt-5 py-3 flex flex-col items-center gap-2">
               <h3 className="text-gray-400 uppercase">{category}</h3>
               <h2 className="text-lg font-sans font-bold">{title}</h2>
