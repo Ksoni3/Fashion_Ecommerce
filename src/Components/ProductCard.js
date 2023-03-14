@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
             <img
               src={image}
               alt="ada"
-              className="h-1/2 rounded-md object-cover object-center ease-in-out duration-500 hover:scale-105"
+              className="h-full rounded-md object-cover object-center ease-in-out duration-500 hover:scale-105"
             />
           </div>
           <div className="-mt-32 md:mt-0 lg:col-span-2 shadow-2xl rounded-3xl flex items-center">
@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
                     Add to cart
                   </button>
                   <button className="text-xl w-3/4 lg:w-auto p-2 rounded-md border border-gray-200 hover:bg-gradient-to-br from-orange-600 to-pink-500">
-                    Buyy Now
+                    Buy Now
                   </button>
                 </div>
               </div>
