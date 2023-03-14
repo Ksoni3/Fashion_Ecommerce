@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
                     Add to cart
                   </button>
                   <button className="text-xl w-3/4 lg:w-auto p-2 rounded-md border border-gray-200 hover:bg-gradient-to-br from-orange-600 to-pink-500">
-                    Buy Now
+                    Buyyyy Now
                   </button>
                 </div>
               </div>
