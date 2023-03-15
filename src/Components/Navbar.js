@@ -5,24 +5,43 @@ import { BiLogIn } from 'react-icons/bi'
 import { IoMdPersonAdd } from 'react-icons/io'
 import {FiMenu} from 'react-icons/fi'
 import {ImCross} from 'react-icons/im'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { switchLogin, updateGreeting} from '../redux/userSlice'
+
 
 
 
 
 const Navbar = () => {
 
+  const dispatch = useDispatch();
 
     const [mobileMenu,setmobileMenu] = useState(false)
     const total= useSelector((state)=>state.cart.totalQuantity)
+    const {greeting,isLoggedIn} = useSelector((state)=>state.user)
+    
 
     const showMenu = ()=>{
         setmobileMenu(!mobileMenu)
     }
 
+    const loginHandler = ()=>{
+      dispatch(switchLogin())
+      dispatch(updateGreeting())
+     
+      
+      
+    }
+
+
+
+
+
+
+
   return (
     <div>
-      <nav className="bg-gray-800 w-[100vw] h-[90px] py-5">
+      <nav className="bg-gray-800 w-screen h-20 py-5">
         <div className="max-w-full  mx-auto  sm:px-6 lg:px-8">
           <div className="flex items-center justify-between ">
             <div className="flex items-center">
@@ -52,13 +71,13 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center gap-5  text-center">
-              <button className=" hidden md:flex w-[100px] bg-white text-black px-3 py-2 rounded-md items-center gap-2 ease-in-out duration-500 hover:bg-gradient-to-br from-orange-500 to-pink-500">
+              <Link to ='/login' onClick={loginHandler}  className=" hidden md:flex w-[120px] bg-white text-black px-3 py-2 rounded-md items-center gap-2 ease-in-out duration-500 hover:bg-gradient-to-br from-orange-500 to-pink-500">
                 {' '}
-                <BiLogIn /> <span>Log In</span>
-              </button>
-              <button className=" hidden md:flex w-[100px] bg-white text-black px-3 py-2 rounded-md  items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500">
-                <IoMdPersonAdd /> <span>Register</span>
-              </button>
+                <BiLogIn /> <span>{isLoggedIn ?  "Log Out" : "Log In"}</span>
+              </Link>
+              <Link to='/register' className=" hidden md:flex w-[100px] bg-white text-black px-3 py-2 rounded-md  items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500">
+              {isLoggedIn ? "Hi":<IoMdPersonAdd />} <span>{isLoggedIn ? greeting.substring(0,8):'Register'}</span>
+              </Link>
               <Link to='/cart' className="w-[70px] md:w-[100px] px-3 py-1 md:py-2 mr-[20px] bg-white  text-black rounded-md flex items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500">
                 {' '}
                 <HiShoppingCart className='text-2xl' /> <span className='hidden md:block'>Cart </span> ({total})
