@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import {Routes, Route} from 'react-router-dom'
 import './App.css';
 import Navbar from './Components/Navbar';
@@ -6,7 +6,11 @@ import Home from './Pages/Home';
 import Products from './Pages/Products';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
-import Hommey from './Pages/Hommey';
+
+import LogIn from './Pages/LogIn';
+import Register from './Pages/Register'
+
+
 function App() {
   return (
     <>
@@ -17,7 +21,11 @@ function App() {
       <Route path= '/products/:id' element={<Product/>}/>
       <Route path='/about' element={<Products />}/>
       <Route path='/cart' element={<Cart />}/>
-      <Route path='/'exact element={<Home />}/>
+      <Route path='/login' element={<LogIn />}/>
+      <Route path='/register' element={<Register />}/>
+
+
+      <Route path='/'exact element={<Home/>}/>
     </Routes>
     
     </>
