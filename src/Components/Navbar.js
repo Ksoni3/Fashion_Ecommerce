@@ -26,10 +26,10 @@ const Navbar = () => {
     }
 
     const loginHandler = ()=>{
-      dispatch(switchLogin())
-      dispatch(updateGreeting())
-     
-      
+      if(isLoggedIn){
+        dispatch(switchLogin())
+        dispatch(updateGreeting())
+      }
       
     }
 
@@ -112,20 +112,26 @@ const Navbar = () => {
             >
              Contact
             </Link>
-            <Link to="/register" onClick={showMenu}
+            {!isLoggedIn && <Link to="/register" onClick={showMenu}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
              Register
-            </Link>
-            <Link to="/login" onClick={showMenu}
+            </Link>}
+            <Link to="/login" onClick={()=>{ showMenu(); loginHandler();}}
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-             Log In
+            {isLoggedIn ?  "Log Out" : "Log In"}
             </Link>
+
+            
+           {greeting.length !==0 && <p className='text-white text-center py-4'> You are: {greeting } </p>}
+            
             
           </div>
         </div>
+        
       </nav>
+     
     </div>
   )
 }
