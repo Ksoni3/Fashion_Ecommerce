@@ -25,7 +25,7 @@ function App() {
       <Route path='/register' element={<Register />}/>
 
 
-      <Route path='/'exact element={<Home/>}/>
+      <Route path='/' exact element={<Home/>}/>
     </Routes>
     
     </>
