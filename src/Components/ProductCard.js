@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
               className="h-full rounded-md object-cover object-center ease-in-out duration-500 hover:scale-105"
             />
           </div>
-          <div className="-mt-32 md:mt-0 lg:col-span-2 shadow-2xl rounded-3xl flex items-center">
+          <div className="-mt-44 md:mt-0 lg:col-span-2 shadow-2xl rounded-3xl flex items-center">
             <div className="w-full m-auto text-center pt-5 py-3 flex flex-col items-center gap-2">
               <h3 className="text-gray-400 uppercase">{category}</h3>
               <h2 className="text-lg font-sans font-bold">{title}</h2>
@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
                     Add to cart
                   </button>
                   <button className="text-xl w-3/4 lg:w-auto p-2 rounded-md border border-gray-200 hover:bg-gradient-to-br from-orange-600 to-pink-500">
-                    Buyyyy Now
+                    Buy Now
                   </button>
                 </div>
               </div>
