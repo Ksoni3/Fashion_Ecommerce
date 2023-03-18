@@ -1,7 +1,11 @@
 import React from 'react';
 import Hrithik from '../Assets/hrithik72.jpg';
 import Products from './Products';
+import Contact from './Contact';
+import About from './About';
 import { Link } from 'react-router-dom';
+
+
 
 const Home = () => {
   return (
@@ -24,6 +28,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Products/>
+      <About/>
+      <Contact />
     </div>
   )
 }
