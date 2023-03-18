@@ -8,8 +8,11 @@ import {
 } from '../redux/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogIn = () => {
+  
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -19,6 +22,8 @@ const LogIn = () => {
   }
   const { email, password } = userInfo
   const greeting = useSelector((state) => state.user.greeting)
+  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -27,6 +32,10 @@ const LogIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if(localStorage.length===0){
+      alert('Email address couldnt be found')
+      return
+    }
     const { email, password } = userInfo
     if (email && password) {
       const { regemail, regpassword } = JSON.parse(
@@ -90,8 +99,8 @@ const LogIn = () => {
                   I forgot my password
                 </a>
               </div>
-              <div className="md:flex gap-3 md:gap-5 pl-6">
-                <button
+              <div className=" w-3/4 flex flex-col md:flex-row gap-3 md:gap-5 pl-6">
+                <button 
                   type="submit"
                   className="py-3 px-12 rounded-lg mt-4 text-white bg-blue-400"
                 >
@@ -111,6 +120,8 @@ const LogIn = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
+     
     </div>
   )
 }
