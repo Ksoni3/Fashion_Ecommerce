@@ -48,7 +48,9 @@ const Cart = () => {
 
               <h2 className="text-gray-500"> Tax Estimate: <span >${(0.13*subTotal).toFixed(2)}</span></h2>
               <hr />
-              <h1 className="text-2xl font-bold"> Order Total: {(subTotal + 0.13 * subTotal + (subTotal === 0 ? 0 : 15)).toFixed(2)}</h1>
+
+              <h1 className="text-2xl font-bold">Order Total: {(subTotal + 0.13 * subTotal + (subTotal === 0 ? 0 : 15)).toFixed(2)}</h1>
+
 
               <hr />
               <button className="w-[90%] py-4 bg-blue-500 text-white font-medium rounded-md">
