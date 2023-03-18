@@ -28,6 +28,8 @@ const userSlice = createSlice({
         },
 
 
+
+
         resetUserInfo: (state,action)=>{
             return {
                 ...state,
@@ -59,7 +61,7 @@ const userSlice = createSlice({
 
 
         switchLogin: (state)=>{
-            const isLoggedIn = !isLoggedIn
+            const isLoggedIn = !state.isLoggedIn
             return {...state,
                 isLoggedIn,
                 greeting:''

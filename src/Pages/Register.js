@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [register, setRegister] = useState({
@@ -11,7 +11,6 @@ const Register = () => {
     isChecked: false
   });
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { regemail, regpassword, regconfirmPassword, isChecked } = register;
@@ -21,28 +20,32 @@ const Register = () => {
     setRegister({ ...register, [name]: value });
   };
 
+
+  
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (regpassword.toLowerCase() === regconfirmPassword.toLowerCase() && isChecked) {
       localStorage.setItem('registerInfo', JSON.stringify(register));
-      alert('user has been registered');
-    }else if(regpassword.toLowerCase() === regconfirmPassword.toLowerCase() && !isChecked) {
-      alert('Please agree to terms and conditions');
-      return
-    
-    
-    }else {
-      alert('password must match');
-      return
+      toast.success('User has been registered.');
+      setRegister({
+        regemail: '',
+        regpassword: '',
+        regconfirmPassword: '',
+        isChecked: false
+      });
+      navigate('/login');
+    } else if(regpassword.toLowerCase() === regconfirmPassword.toLowerCase() && !isChecked) {
+      toast.error('Please agree to terms and conditions.');
+      return;
+    } else {
+      toast.error('Password and Confirm password should match.');
+      return;
     }
-    setRegister({
-      regemail: '',
-      regpassword: '',
-      regconfirmPassword: '',
-      isChecked: false
-    });
-    navigate('/login');
   };
+  
+
+  
+
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -85,7 +88,9 @@ const Register = () => {
     </div>
 
 </form>
+<ToastContainer/>
     </div>
+
    
   )
 }

@@ -33,7 +33,7 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if(localStorage.length===0){
-      alert('Email address couldnt be found')
+      toast.error("Email address couldnt be found");
       return
     }
     const { email, password } = userInfo
@@ -46,18 +46,17 @@ const LogIn = () => {
         password === regpassword
       ) {
 
-        alert('Logged In Succesfully')
+        toast.success('Logged In Succesfully')
         dispatch(updateLogIn())
         dispatch(updateGreeting())
         dispatch(resetUserInfo())
         navigate('/')
       } else {
-        console.log(password,regpassword)
-        alert('Invalid login credentials')
+        toast.error('Invalid login credentials')
         return
       }
     } else {
-      alert('Please fill up forms')
+      toast.error('Please fill up forms')
       return
     }
   }
