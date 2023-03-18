@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useActionData } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { addToCart } from '../redux/cartSlice';
 import { useDispatch } from 'react-redux';
 
