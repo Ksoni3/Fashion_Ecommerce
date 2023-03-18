@@ -112,6 +112,17 @@ const Navbar = () => {
             >
              Contact
             </Link>
+            <Link to="/register" onClick={showMenu}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+             Register
+            </Link>
+            <Link to="/login" onClick={showMenu}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+             Log In
+            </Link>
+            
           </div>
         </div>
       </nav>
