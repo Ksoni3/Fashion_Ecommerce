@@ -1,14 +1,38 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import CardsForCart from '../Components/CardsForCart'
 import { useSelector } from 'react-redux'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const Cart = () => {
+  const {isLoggedIn}= useSelector((state)=>state.user)
   const cartItems = useSelector((state) => state.cart.items)
   const total = useSelector((state) => state.cart.totalQuantity)
   const subTotal = useSelector((state) => state.cart.subTotal)
+  const navigate = useNavigate();
+  const handleCheckout = ()=>{
+    if(cartItems.length===0){
+      toast.error("Your cart is empty")
+      return
+    }else{
+      if(!isLoggedIn){
+        toast.error("Please log in first")
+        setTimeout(()=>{
+          navigate("/login")
+        },1000)
+        return
+        
+      }else{
+        navigate("/checkout")
+      }
+    }
+  }
   
 
 
@@ -53,14 +77,15 @@ const Cart = () => {
 
 
               <hr />
-              <button className="w-[90%] py-4 bg-blue-500 text-white font-medium rounded-md">
-                {' '}
+              <button onClick={handleCheckout} className="w-[90%] py-4 bg-blue-500 text-white font-medium rounded-md">
+                
                 Checkout
               </button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </>
   )
 }
