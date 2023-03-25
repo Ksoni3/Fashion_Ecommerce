@@ -14,8 +14,9 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const [mobileMenu, setmobileMenu] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+ 
   const [query, setQuery] = useState('')
+
   const [filteredProducts, setFilteredProducts] = useState([])
   const total = useSelector((state) => state.cart.totalQuantity)
   const { greeting, isLoggedIn } = useSelector((state) => state.user)
@@ -25,7 +26,7 @@ const Navbar = () => {
   }, [query])
 
   const handleSearch = (searchTerm) => {
-    setIsLoading(true)
+    
     const getProducts = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products')
@@ -41,7 +42,7 @@ const Navbar = () => {
       } catch (error) {
         console.log(error)
       }
-      setIsLoading(false)
+     
     }
 
     getProducts()
@@ -96,15 +97,15 @@ const Navbar = () => {
               </div>
               <div className="flex items-center flex-shrink-0 ml-5 md:ml-0">
                 <img
-                  className="h-6 w-6 md:h-6 md:w-8"
+                  className="h-6 w-6 md:h-8 md:w-8"
                   src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                   alt="Workflow"
                 />
-                <div className=" ml-3  text-white text-center flex justify-center items-center z-50 ">
+                <div className=" ml-3 md:ml-10  text-white text-center flex justify-center items-center z-50 ">
                   <input
                     className=" w-44 md:w-auto px-2 py-1 md:p-2 rounded-md outline-none text-black "
                     type="text "
-                    placeholder="Search product"
+                    placeholder="Search Products"
                     value={query}
                     onChange={handleChange}
                   />
@@ -148,15 +149,15 @@ const Navbar = () => {
                 {' '}
                 <BiLogIn /> <span>{isLoggedIn ? 'Log Out' : 'Log In'}</span>
               </Link>
-              <Link
+              {!isLoggedIn ? <Link
                 to="/register"
                 className=" hidden md:flex w-[100px] bg-white text-black px-3 py-2 rounded-md  items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
               >
                 {isLoggedIn ? 'Hi' : <IoMdPersonAdd />}{' '}
                 <span>
-                  {isLoggedIn ? greeting.substring(0, 8) : 'Register'}
+                  Register
                 </span>
-              </Link>
+              </Link>: ''}
               <Link
                 to="/cart"
                 className="w-[70px] md:w-[100px] px-3 py-1 md:py-2 mr-[20px] bg-white  text-black rounded-md flex items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
