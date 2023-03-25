@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <div className="bg-gradient-to-br from-orange-600 to-pink-500 min-h-screen flex justify-center items-center">
-        <div className="max-w-6xl w-[90%] md:auto h-[70%] bg-white p-10 grid grid-cols-1 lg:grid-cols-3  md:gap-10 rounded-md">
+        <div className="max-w-6xl w-full md:w-auto h-[100vh] md:h-[70%] bg-white p-10 grid grid-cols-1 lg:grid-cols-3  md:gap-10 rounded-md">
           <div className=" h-[50%] md:h-auto lg:col-span-1  shadow-2xl rounded-3xl p-5 flex justify-center">
             <img
               src={image}
