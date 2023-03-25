@@ -9,6 +9,7 @@ import Cart from './Pages/Cart';
 
 import LogIn from './Pages/LogIn';
 import Register from './Pages/Register'
+import Checkout from './Pages/Checkout';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path='/cart' element={<Cart />}/>
       <Route path='/login' element={<LogIn />}/>
       <Route path='/register' element={<Register />}/>
+      <Route path='/checkout' element={<Checkout />}/>
 
 
       <Route path='/' exact element={<Home/>}/>
