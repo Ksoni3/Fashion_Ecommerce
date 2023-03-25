@@ -47,7 +47,7 @@ const Navbar = () => {
     getProducts()
   }
 
-  
+
 
   const handleChange = (e) => {
     setQuery(e.target.value.toLowerCase())
@@ -78,8 +78,8 @@ const Navbar = () => {
   return (
     <div className="bg-gray-800  h-24 z-40 relative">
       <nav className="bg-gray-800 h-24 py-5">
-        <div className="max-w-full  mx-auto  sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between ">
+        <div className="max-w-full  mx-auto  sm:px-6 lg:px-8 ">
+          <div className=" flex items-center justify-between pt-2 ">
             <div className="flex items-center">
               <div className=" w-[45px]">
                 {!mobileMenu ? (
