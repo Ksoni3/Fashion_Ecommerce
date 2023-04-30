@@ -35,7 +35,7 @@ const Products = () => {
 
   return (
     <div>
-      <div className="bg-gradient-to-br from-orange-600 to-pink-500 h-auto flex flex-col justify-center items-center gap-6 overflow-hidden px-4 sm:px-8 py-4 md:py-8">
+      <div className="bg-gradient-to-br from-orange-600 to-pink-500 h-auto flex flex-col justify-center items-center gap-6 overflow-hidden px-4 sm:px-8 py-6 lg:py-8">
         <h1 className="text-3xl mt-6 font-serif text-white">Products</h1>
         <div className="w-full flex flex-wrap justify-center items-center gap-4 py-6">
           <button
