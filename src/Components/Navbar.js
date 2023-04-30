@@ -147,7 +147,7 @@ const Navbar = () => {
 
         {/* checking */}
         <div
-          className={`bg-gray-800 w-full h-[50%] lg:hidden transition duration-500 flex items-center justify-center ${
+          className={`bg-gray-800 w-full h-[50%] lg:hidden transition duration-500 flex items-center justify-center z-10 ${
             !mobileMenu ? 'absolute top-[-1000px]' : 'absolute top-16 left-0'
           }`}
           id="mobile-menu"
