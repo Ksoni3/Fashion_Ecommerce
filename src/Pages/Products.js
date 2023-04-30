@@ -24,6 +24,10 @@ const Products = () => {
     getProducts()
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const filterProducts = (group) => {
     const updatedArray = products.filter((item) => item.category === group)
     setFilterData(updatedArray)

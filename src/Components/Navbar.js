@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const [mobileMenu, setmobileMenu] = useState(false)
- 
+
   const [query, setQuery] = useState('')
 
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -26,7 +26,6 @@ const Navbar = () => {
   }, [query])
 
   const handleSearch = (searchTerm) => {
-    
     const getProducts = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products')
@@ -42,13 +41,10 @@ const Navbar = () => {
       } catch (error) {
         console.log(error)
       }
-     
     }
 
     getProducts()
   }
-
-
 
   const handleChange = (e) => {
     setQuery(e.target.value.toLowerCase())
@@ -63,8 +59,6 @@ const Navbar = () => {
     setQuery('')
   }
 
-  
-
   const showMenu = () => {
     setmobileMenu(!mobileMenu)
   }
@@ -77,110 +71,92 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-gray-800  h-24 z-40 relative">
-      <nav className="bg-gray-800 h-24 py-5">
-        <div className="max-w-full  mx-auto  sm:px-6 lg:px-8 ">
-          <div className=" flex items-center justify-between pt-2 ">
-            <div className="flex items-center">
-              <div className=" w-[45px]">
-                {!mobileMenu ? (
-                  <FiMenu
-                    onClick={showMenu}
-                    className="block md:hidden ml-[20px] text-white text-2xl"
-                  />
-                ) : (
-                  <ImCross
-                    onClick={showMenu}
-                    className="block md:hidden ml-[20px] text-white"
-                  />
-                )}
-              </div>
-              <div className="flex items-center flex-shrink-0 ml-5 md:ml-0">
-                <img
-                  className="h-6 w-6 md:h-8 md:w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                />
-                <div className=" ml-3 md:ml-10  text-white text-center flex justify-center items-center z-50 ">
-                  <input
-                    className=" w-44 md:w-auto px-2 py-1 md:p-2 rounded-md outline-none text-black "
-                    type="text "
-                    placeholder="Search Products"
-                    value={query}
-                    onChange={handleChange}
-                  />
-                  {query ? (
-                    <ImCross
-                      onClick={handleCross}
-                      className=" text-red-600 relative right-8 cursor-pointer"
-                    />
-                  ) : (
-                    <BiSearch
-                      onClick={() => handleSearch(query)}
-                      className="text-blue-800 relative right-8 md:right-10 cursor-pointer"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="text-white text-xl hidden md:block">
-              <ul className="flex items-center gap-7 ">
-                <li className="list-none hover:scale-110 ease-in-out duration-200  ">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="list-none hover:scale-110 ease-in-out duration-200 ">
-                  <Link to="/products">Products</Link>
-                </li>
-                <li className="list-none hover:scale-110 ease-in-out duration-300 ">
-                  <Link to="/about">About</Link>
-                </li>
-                <li className="list-none hover:scale-110 ease-in-out duration-300 ">
-                  <Link to="/contact">Contact</Link>
-                </li>
-              </ul>
-            </div>
+    <nav className="bg-gray-800 py-6 overflow-hidden">
+      <div className="w-[94%] mx-auto flex items-center justify-between">
+        <div className=" w-[5%] lg:hidden">
+          {!mobileMenu ? (
+            <FiMenu onClick={showMenu} className=" text-white text-2xl" />
+          ) : (
+            <ImCross onClick={showMenu} className="  text-white" />
+          )}
+        </div>
+        <img
+          className="h-6 w-6 lg:h-8 lg:w-8"
+          src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+          alt="Workflow"
+        />
+        <div className=" flex items-center bg-white py-1 px-1 lg:px-2 rounded-md w-[55%] lg:w-auto ">
+          <input
+            className="outline-none w-[90%] "
+            type="text "
+            placeholder="Search Products"
+            value={query}
+            onChange={handleChange}
+          />
+          {query ? (
+            <ImCross onClick={handleCross} className=" text-red-600 " />
+          ) : (
+            <BiSearch
+              onClick={() => handleSearch(query)}
+              className="text-blue-800 "
+            />
+          )}
+        </div>
+        <ul className="lg:flex items-center gap-6 hidden text-white ">
+          <li className="list-none hover:scale-110 ease-in-out duration-200  ">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="list-none hover:scale-110 ease-in-out duration-200 ">
+            <Link to="/products">Products</Link>
+          </li>
+          <li className="list-none hover:scale-110 ease-in-out duration-300 ">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="list-none hover:scale-110 ease-in-out duration-300 ">
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
 
-            <div className="flex items-center gap-5  text-center">
-              <Link
-                to="/login"
-                onClick={loginHandler}
-                className=" hidden md:flex w-[120px] bg-white text-black px-3 py-2 rounded-md items-center gap-2 ease-in-out duration-500 hover:bg-gradient-to-br from-orange-500 to-pink-500"
-              >
-                {' '}
-                <BiLogIn /> <span>{isLoggedIn ? 'Log Out' : 'Log In'}</span>
-              </Link>
-              {!isLoggedIn ? <Link
-                to="/register"
-                className=" hidden md:flex w-[100px] bg-white text-black px-3 py-2 rounded-md  items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
-              >
-                {isLoggedIn ? 'Hi' : <IoMdPersonAdd />}{' '}
-                <span>
-                  Register
-                </span>
-              </Link>: ''}
-              <Link
-                to="/cart"
-                className="w-[70px] md:w-[100px] px-3 py-1 md:py-2 mr-[20px] bg-white  text-black rounded-md flex items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
-              >
-                {' '}
-                <HiShoppingCart className="text-2xl" />{' '}
-                <span className="hidden md:block">Cart </span> ({total})
-              </Link>
-            </div>
-          </div>
+        <div className="flex items-center gap-5  text-center">
+          <Link
+            to="/login"
+            onClick={loginHandler}
+            className=" hidden lg:flex w-28 bg-white text-black px-3 py-2 rounded-md items-center gap-2 ease-in-out duration-500 hover:bg-gradient-to-br from-orange-500 to-pink-500"
+          >
+            {' '}
+            <BiLogIn /> <span>{isLoggedIn ? 'Log Out' : 'Log In'}</span>
+          </Link>
+          {!isLoggedIn ? (
+            <Link
+              to="/register"
+              className=" hidden lg:flex w-28 bg-white text-black px-3 py-2 rounded-md  items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
+            >
+              {isLoggedIn ? 'Hi' : <IoMdPersonAdd />} <span>Register</span>
+            </Link>
+          ) : (
+            ''
+          )}
+          <Link
+            to="/cart"
+            className="w-18 lg:w-28 px-3 py-1 lg:py-2  bg-white  text-black rounded-md flex items-center gap-2 ease-in-out duration-500  hover:bg-gradient-to-br from-orange-500 to-pink-500"
+          >
+            <HiShoppingCart className="text-2xl" />{' '}
+            <span className="hidden md:block">Cart </span> ({total})
+          </Link>
         </div>
 
+        {/* checking */}
         <div
-          className={`bg-gray-800 md:hidden mt-[36px] pt-[30px] pb-[50px] transition duration-500 ${
-            !mobileMenu ? 'relative top-[-1000px]' : 'relative'
+          className={`bg-gray-800 w-full h-[50%] lg:hidden transition duration-500 flex items-center justify-center ${
+            !mobileMenu ? 'absolute top-[-1000px]' : 'absolute top-16 left-0'
           }`}
           id="mobile-menu"
         >
-          <div className="px-4 space-y-1 sm:px-3">
+          <div className=" w-[40%] text-center">
             <Link
               to="/"
               onClick={showMenu}
-              className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="hover:bg-gray-700 text-white block  py-3 rounded-md text-base font-medium"
             >
               Home
             </Link>
@@ -188,7 +164,7 @@ const Navbar = () => {
             <Link
               to="/products"
               onClick={showMenu}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block py-3 rounded-md text-base font-medium"
             >
               Products
             </Link>
@@ -196,7 +172,7 @@ const Navbar = () => {
             <Link
               to="/about"
               onClick={showMenu}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block  py-3 rounded-md text-base font-medium"
             >
               About
             </Link>
@@ -204,7 +180,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={showMenu}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block  py-3 rounded-md text-base font-medium"
             >
               Contact
             </Link>
@@ -212,7 +188,7 @@ const Navbar = () => {
               <Link
                 to="/register"
                 onClick={showMenu}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block  py-3 rounded-md text-base font-medium"
               >
                 Register
               </Link>
@@ -223,7 +199,7 @@ const Navbar = () => {
                 showMenu()
                 loginHandler()
               }}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block  py-3 rounded-md text-base font-medium"
             >
               {isLoggedIn ? 'Log Out' : 'Log In'}
             </Link>
@@ -236,35 +212,36 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </nav>
-      {filteredProducts.length > 0 && (
-        <div className="w-full md:w-[36%] absolute top-20 bg-gray-800 rounded-lg max-h-screen overflow-x-auto ">
-          {filteredProducts.map((item, index) => {
-            return (
-              <div
-                onClick={() => handleNavigate(item.id)}
-                key={index}
-                className=" text-white p-10 flex justify-center items-center gap-3"
-              >
-                <img
-                  className="w-[30%] h-32 rounded-3xl p-2 "
-                  src={item.image}
-                  alt={item.title}
-                />
-                <div className="w-[70%] flex flex-col items-center gap-5">
-                  <p className="text-gray-400">
-                    {' '}
-                    {item.category.toUpperCase()}{' '}
-                  </p>
-                  <h1 className="w-3/4 mx-auto"> {item.title} </h1>
-                  <h2 className="font-bold">$ {item.price}</h2>
+
+        {filteredProducts.length > 0 && (
+          <div className="w-full md:w-[36%] absolute top-20 left-0 bg-gray-800 rounded-lg max-h-[90%] overflow-y-scroll ">
+            {filteredProducts.map((item, index) => {
+              return (
+                <div
+                  onClick={() => handleNavigate(item.id)}
+                  key={index}
+                  className=" text-white p-10 flex justify-center items-center gap-3"
+                >
+                  <img
+                    className="w-[30%] h-32 rounded-3xl p-2 "
+                    src={item.image}
+                    alt={item.title}
+                  />
+                  <div className="w-[70%] flex flex-col items-center gap-5">
+                    <p className="text-gray-400">
+                      {' '}
+                      {item.category.toUpperCase()}{' '}
+                    </p>
+                    <h1 className="w-3/4 mx-auto"> {item.title} </h1>
+                    <h2 className="font-bold">$ {item.price}</h2>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
-        </div>
-      )}
-    </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    </nav>
   )
 }
 
